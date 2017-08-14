@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Analytics from 'mobile-center-analytics';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,19 +21,27 @@ const styles = StyleSheet.create({
   },
 });
 
-const App = () => (
-  <View style={styles.container}>
-    <Text style={styles.welcome}>
-      Welcome to React Native!
-    </Text>
-    <Text style={styles.instructions}>
-      To get started, edit index.android.js
-    </Text>
-    <Text style={styles.instructions}>
-      Double tap R on your keyboard to reload,{'\n'}
-      Shake or press menu button for dev menu
-    </Text>
-  </View>
-);
+class App extends React.PureComponent {
+  componentDidMount() {
+    Analytics.trackEvent('App started');
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.welcome}>
+          Welcome to React Native!
+        </Text>
+        <Text style={styles.instructions}>
+          To get started, edit index.android.js
+        </Text>
+        <Text style={styles.instructions}>
+          Double tap R on your keyboard to reload,{'\n'}
+          Shake or press menu button for dev menu
+        </Text>
+      </View>
+    );
+  }
+}
 
 export default App;
